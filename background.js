@@ -25,10 +25,11 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 WITH THE SOFTWARE.
 */
 // Settings ////////////////////////////////////////////////////////////////////
-var updateInterval  = 86400;
-var versionUrl      = "https://www.srware.net/en/software_srware_iron_download.php";
-var versionRegex    = /Version: <strong>([0-9.]+)<\/strong>/;
-var updateRecord    = "lastUpdateTime";
+var updateInterval    = 86400;
+var versionUrl        = "https://www.srware.net/en/software_srware_iron_download.php";
+var versionRegex      = /Version: <strong>([0-9.]+)<\/strong>/;
+var versionRegexGroup = 1;
+var updateRecord      = "lastUpdateTime";
 
 
 //var updateMaxErrors = 10;// How to record errors?
@@ -83,7 +84,7 @@ var updateRecord    = "lastUpdateTime";
 
 		// TODO: Check successful, clear error count.
 		localStorage.setItem(updateRecord, currentTime);
-		if (version_compare(latestVersion[1], currentVersion, "<="))
+		if (version_compare(latestVersion[versionRegexGroup], currentVersion, "<="))
 			return;// New version is the same or older than current version.
 
 		if (window.webkitNotifications)
