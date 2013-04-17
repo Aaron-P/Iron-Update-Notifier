@@ -32,7 +32,7 @@ var updateRecord      = "lastUpdateTime";
 	var previousTime = localStorage.getItem(updateRecord);
 	if (previousTime === null)
 	{
-		previousTime = currentTime;
+		previousTime = 0;
 		localStorage.setItem(updateRecord, currentTime);
 	}
 	if (currentTime - updateInterval < previousTime)
